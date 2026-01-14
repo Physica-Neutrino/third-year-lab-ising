@@ -1,0 +1,11 @@
+---
+title: "Third Year Labs - Ising Model"
+---
+
+## About
+
+Minimal repository for third year labs exploring the Ising model.
+
+## Contents
+
+This repository contains code and reading materials for the Ising model practical.
