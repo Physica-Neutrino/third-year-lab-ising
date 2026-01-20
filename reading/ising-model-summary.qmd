@@ -1,0 +1,137 @@
+---
+title: "Ising Model Summary"
+format: 
+  html:
+    toc: true
+    code-fold: true
+  pdf:
+    toc: true
+---
+
+## Overview
+
+The **Ising model** is a mathematical model of ferromagnetism in statistical mechanics, consisting of discrete variables representing magnetic dipole moments of atomic spins that can be in one of two states (+1 or -1).
+
+## Basic Definitions
+
+| Symbol | Meaning |
+|--------|---------|
+| $s_i$ | Spin at site $i$ (±1) |
+| $J$ | Coupling constant (interaction strength) |
+| $h$ | External magnetic field |
+| $k_B$ | Boltzmann constant |
+| $T$ | Temperature |
+| $\beta$ | Inverse temperature = $1/(k_B T)$ |
+| $N$ | Number of spins |
+
+## Hamiltonian
+
+### General Form
+
+| Equation | Description |
+|----------|-------------|
+| $H = -J \sum_{\langle i,j \rangle} s_i s_j - h \sum_i s_i$ | Full Hamiltonian with nearest-neighbor interactions and external field |
+| $H = -J \sum_{\langle i,j \rangle} s_i s_j$ | Zero-field Hamiltonian |
+
+- $\langle i,j \rangle$ denotes nearest-neighbor pairs
+- $J > 0$: ferromagnetic (parallel spins favored)
+- $J < 0$: antiferromagnetic (antiparallel spins favored)
+
+## Statistical Mechanics Recap
+
+### Partition Function and Energy
+
+| Quantity | Formula | Description |
+|----------|---------|-------------|
+| **Partition function** | $Z = \sum_{\{s\}} e^{-\beta H}$ | Sum over all possible spin configurations |
+| **Free energy** | $F = -k_B T \ln Z$ | Thermodynamic potential |
+| **Energy** | $\langle E \rangle = -\frac{\partial \ln Z}{\partial \beta}$ | Average energy |
+| **Probability** | $P(\{s\}) = \frac{e^{-\beta H(\{s\})}}{Z}$ | Boltzmann distribution |
+
+## Order Parameters and Observables
+
+| Observable | Formula | Physical Meaning |
+|------------|---------|------------------|
+| **Magnetization per spin** | $m = \frac{1}{N}\sum_i s_i$ | Average spin per site |
+| **Susceptibility** | $\chi = \beta N (\langle m^2 \rangle - \langle m \rangle^2)$ | Response to external field |
+| **Specific heat** | $c = k_B \beta^2 N (\langle e^2 \rangle - \langle e \rangle^2)$ | Heat capacity fluctuations |
+| **Correlation function** | $G(r) = \langle s_i s_j \rangle - \langle s_i \rangle \langle s_j \rangle$ | Spin correlations at distance $r$ |
+
+
+
+## Thermodynamic Quantities and Response Functions
+
+| Quantity | Thermodynamic Definition | Response Function (Fluctuation-Dissipation) |
+|----------|--------------------------|---------------------------------------------|
+| **Magnetization per spin** | $m = -\frac{1}{N}\frac{\partial F}{\partial h}\bigg|_T$ | $\chi = -\frac{\partial^2 F}{\partial h^2}\bigg|_T = \beta N (\langle m^2 \rangle - \langle m \rangle^2)$ |
+| **Energy per spin** | $e = \frac{\partial (\beta F)}{\partial \beta}\bigg|_h$ | $c = -\frac{1}{N}k_B \beta^2 \frac{\partial^2 F}{\partial \beta^2}\bigg|_h = k_B \beta^2 N (\langle e^2 \rangle - \langle e \rangle^2)$ |
+
+
+## Critical Exponents and Scaling
+
+### Critical Exponents
+
+Near the critical point, physical quantities diverge or vanish as power laws in $t = (T - T_c)/T_c$:
+
+| Exponent | Quantity | Behavior | Physical Meaning |
+|----------|----------|----------|------------------|
+| $\alpha$ | Specific heat | $c \sim \|t\|^{-\alpha}$ | Heat capacity divergence |
+| $\beta$ | Magnetization | $m \sim (-t)^{\beta}$ for $t < 0$ | Order parameter |
+| $\gamma$ | Susceptibility | $\chi \sim \|t\|^{-\gamma}$ | Response to field |
+| $\delta$ | Critical isotherm | $h \sim m^{\delta}$ at $T = T_c$ | Field-magnetization relation |
+| $\nu$ | Correlation length | $\xi \sim \|t\|^{-\nu}$ | Spatial correlations |
+| $\eta$ | Correlation function | $G(r) \sim r^{-(d-2+\eta)}$ at $T_c$ | Decay of correlations |
+
+### Scaling Relations
+
+Critical exponents satisfy universal scaling relations:
+
+| Relation | Formula | Name |
+|----------|---------|------|
+| **Rushbrooke** | $\alpha + 2\beta + \gamma = 2$ | Thermodynamic relation |
+| **Widom** | $\gamma = \beta(\delta - 1)$ | Connects order parameter and response |
+| **Fisher** | $\gamma = \nu(2 - \eta)$ | Relates susceptibility to correlations |
+| **Hyperscaling** | $d\nu = 2 - \alpha$ | Valid for $d < 4$ |
+
+**Note:** Only 2 exponents are independent; others follow from scaling relations.
+
+### Universal Values by Dimension
+
+| Dimension | $\alpha$ | $\beta$ | $\gamma$ | $\delta$ | $\nu$ | $\eta$ |
+|-----------|----------|---------|----------|----------|-------|--------|
+| **1D** | - | - | - | - | - | No transition |
+| **2D (Exact)** | 0 (log) | 1/8 | 7/4 | 15 | 1 | 1/4 |
+| **3D (Numerical)** | 0.110 | 0.326 | 1.237 | 4.789 | 0.630 | 0.036 |
+| **Mean Field ($d \geq 4$)** | 0 | 1/2 | 1 | 3 | 1/2 | 0 |
+
+## Exact Results (Onsager Solution, 2D)
+
+| Property | Value/Formula | Notes |
+|----------|---------------|-------|
+| **Critical temperature** | $T_c = \frac{2J}{k_B \ln(1+\sqrt{2})} \approx 2.269 J/k_B$ | Phase transition point |
+| **Critical exponents** | $\alpha = 0$ (log), $\beta = 1/8$, $\gamma = 7/4$, $\nu = 1$ | Exact values for 2D |
+| **Spontaneous magnetization** | $m(T) \sim (T_c - T)^{\beta}$ for $T < T_c$ | Order parameter near $T_c$ |
+| **Susceptibility** | $\chi(T) \sim \|T - T_c\|^{-\gamma}$ | Diverges at $T_c$ |
+
+## Monte Carlo Simulation
+
+### Metropolis Algorithm
+
+| Step | Action | Formula |
+|------|--------|---------|
+| 1 | Select random spin $s_i$ | - |
+| 2 | Calculate energy change | $\Delta E = 2s_i(J\sum_{\text{neighbors}} s_j + h)$ |
+| 3 | Accept flip if | $\Delta E < 0$ or $\text{rand}(0,1) < e^{-\beta \Delta E}$ |
+| 4 | Update configuration | Flip spin if accepted |
+
+**Note:** One Monte Carlo step (MCS) = $N$ attempted flips
+
+## Finite Size Effects
+
+| Effect | Scaling | Notes |
+|--------|---------|-------|
+| **Rounded transition** | Width $\sim L^{-1/\nu}$ | Transition smears out |
+| **Shifted $T_c$** | $T_c(L) - T_c(\infty) \sim L^{-1/\nu}$ | Apparent $T_c$ moves |
+| **Finite magnetization** | $m(T_c, L) \sim L^{-\beta/\nu}$ | Non-zero at pseudo-$T_c$ |
+
+$L$ = linear system size, $\nu$ = correlation length exponent
