@@ -1,0 +1,17 @@
+---
+title: "TVery simple page"
+---
+
+Basic equation
+
+$$x = 2y$$
+
+Basic code
+
+```python
+import nummpy as np
+
+a = np.arange(10)
+
+
+```

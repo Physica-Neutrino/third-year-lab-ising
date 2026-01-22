@@ -7,6 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: dummy.qmd
+        text: "A dummy mage"
 
 format:
   html:
